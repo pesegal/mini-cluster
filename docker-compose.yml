@@ -1,0 +1,14 @@
+version: '3'
+services:
+  front-end:
+    image: "pesegal/mc-front-end:0.0.1"
+    ports: 
+      - "3000:8080"
+
+  count-service:
+    image: "pesegal/mc-count-service:0.0.1"
+    ports:
+      - "3010:8081"
+
+
+
