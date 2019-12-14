@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FrontendController {
 
+    private int clickCount = 0;
+
     @GetMapping("/")
     public String launch(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
-        model.addAttribute("name", name);
+        model.addAttribute("counter", clickCount);
         return "index";
     }
 
-    @GetMapping(value="/greeting")
+    @GetMapping(value="/count")
     public String greeting(Model model) {
-        model.addAttribute("name", "You Clicked Me!");
+        clickCount++;
+        model.addAttribute("counter", clickCount);
         return "index";
     }
     
