@@ -10,8 +10,8 @@
 	<groupId>mini.cluster</groupId>
 	<artifactId>front-end</artifactId>
 	<version>0.0.1</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>front-end</name>
+	<description>Front end demo service for mini-cluster learning project.</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -50,7 +50,7 @@
 				<version>${dockerfile.maven.version}</version>
 				<executions>
 					<execution>
-						<id>default</id>
+					<id>default</id>
 						<goals>
 							<goal>build</goal>
 							<goal>push</goal>
@@ -59,7 +59,7 @@
 				</executions>
 
 				<configuration>
-					<repository>pesegal/mini-cluster-frontend</repository>
+					<repository>pesegal/mc-front-end</repository>
 					<tag>${project.version}</tag>
 					<buildArgs>
 						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
