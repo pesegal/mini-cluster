@@ -12,5 +12,10 @@ public class CountController {
         return "Hello World";
     }
 
+    @GetMapping("/count")
+    public Integer getCurrentCount() {
+        return 0;
+    }
+
 
 }
