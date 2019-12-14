@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CountApplication<count-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "mini.cluster.countservice.CountApplication",
+            "projectName": "count-service",
+            "args": ""
+        }
+    ]
+}
