@@ -12,6 +12,4 @@
     <module>front-end</module>
     <module>count-service</module>
   </modules>
-
- <!-- docker rmi $(docker images -qa -f 'dangling=true') -->
 </project>

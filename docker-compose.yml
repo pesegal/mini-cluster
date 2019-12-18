@@ -2,13 +2,27 @@ version: '3'
 services:
   front-end:
     image: "pesegal/mc-front-end:0.0.1"
-    ports: 
+    container_name: front-end
+    networks:
+      - mc-net
+    ports:
       - "3000:8080"
+    environment:
+      SERVICE_COUNT_HOST: "http://count-service"
+      SERVICE_COUNT_PORT: 8081
+      # Note ports only bind between container -> host, not container -> container
+      # Therefore use app.prop configured server.port for count-service
 
   count-service:
     image: "pesegal/mc-count-service:0.0.1"
+    container_name: count-service
+    networks:
+      - mc-net
     ports:
       - "3010:8081"
 
+networks:
+  mc-net:
+    driver: bridge
 
 

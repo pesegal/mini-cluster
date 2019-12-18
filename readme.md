@@ -15,4 +15,16 @@ __Message Passing Techniques__
 The technologies will be focused around Spring / JVM technologies first, but I might try out other frameworks in the future.
 
 ## Setup
-docker-compose / maven :: TBD
+In the root directory you can build the maven projects
+using `mvn clean package` which will build and create docker containers for
+each micro-service project. Once that has completed you can use `docker-compose up`
+to start up all the microservices in a mini-cluster. `docker-compose down` will stop
+the running cluster as well.
+
+## Image Cleanup
+The current docker container generation plugin leaves
+dangling container images on your local docker. You can quickly clean them
+up with:
+```
+docker rmi $(docker images -qa -f 'dangling=true')
+```
