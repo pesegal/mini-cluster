@@ -32,3 +32,9 @@ up with:
 ```
 docker rmi $(docker images -qa -f 'dangling=true')
 ```
+
+## Scaling Container To Show Loadbalancing
+```bash
+// Scales count service to three instances.
+docker-compose up --scale count-service=3
+```

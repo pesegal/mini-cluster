@@ -10,16 +10,40 @@ services:
     environment:
       SERVICE_COUNT_HOST: "http://count-service"
       SERVICE_COUNT_PORT: 8081
+      SPRING_CLOUD_CONSUL_HOST: "http://consul"
       # Note ports only bind between container -> host, not container -> container
-      # Therefore use app.prop configured server.port for count-service
+      # Therefore, use app.prop configured server.port for count-service
+
+    depends_on:
+      - consul
 
   count-service:
     image: "pesegal/mc-count-service:0.0.1"
-    container_name: count-service
     networks:
       - mc-net
     ports:
-      - "3010:8081"
+      - "8081" # Switch this to random port mapping to allow for --scale
+
+    environment:
+      SPRING_CLOUD_CONSUL_HOST: "http://consul"
+      SPRING_CLOUD_CONSUL_DISCOVERY_INSTANCEID: '$${spring.application.name}:$${random.value}'
+
+    depends_on:
+      - consul
+
+
+  consul:
+    hostname: consul
+    image: "consul"
+
+    container_name: consul-dev
+    networks:
+      - mc-net
+    ports:
+      - "8500:8500"
+      - "8600:8600"
+
+
 
 networks:
   mc-net:
