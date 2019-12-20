@@ -18,6 +18,9 @@ __Distributed Transactions__
 
 The technologies will be focused around Spring / JVM technologies first, but I might try out other frameworks in the future.
 
+In addition, I will be providing write up's to provide context to each exploration. Links to writeups:
+- [Introduction Service Discovery with Consul](notes/consul-presentation-outline.md)
+
 ## Setup
 In the root directory you can build the maven projects
 using `mvn clean package` which will build and create docker containers for
