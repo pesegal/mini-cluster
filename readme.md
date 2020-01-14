@@ -20,6 +20,7 @@ The technologies will be focused around Spring / JVM technologies first, but I m
 
 In addition, I will be providing write up's to provide context to each exploration. Links to writeups:
 - [Introduction Service Discovery with Consul](notes/consul-presentation-outline.md)
+- [Distributed Configuration Management with Consul](notes/consule-for-configuration-mgmt.md)
 
 ## Setup
 In the root directory you can build the maven projects
