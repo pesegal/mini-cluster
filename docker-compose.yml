@@ -31,6 +31,30 @@ services:
     depends_on:
       - consul
 
+  git2consul:
+    image: "cimpress/git2consul"
+    container_name: git2consul
+
+    entrypoint:
+      - "/usr/bin/node"
+      - "/usr/lib/node_modules/git2consul"
+      - "--endpoint"
+      - "consul"
+      - "--port"
+      - "8500"
+      - "--config-file"
+      - "/etc/git2consul.d/config.json"
+
+    volumes:
+      - "${PWD}/configRepo/git2consul_config.json:/etc/git2consul.d/config.json"
+      - "${PWD}/configRepo/appConfig:/var/repo"
+
+    networks:
+      - mc-net
+
+    depends_on:
+      - consul
+
   consul:
     hostname: consul
     image: "consul"
