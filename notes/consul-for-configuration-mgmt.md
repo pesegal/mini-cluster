@@ -30,6 +30,80 @@ to the least specific and have sane defaults._
 4. Configuration Profiles should be able to be mixed and matched: _This allows us to do feature flags gives us flexability._
 
 
+# Configuration Property Management Example
+
+We want to show a value on the front end. This value will be configured as an application property. We are going to 
+start super simple and place an application configuration property that gets rendered as part of the front-end.
+
+## The Most Basic Approach
+
+To start lets take the most basic approach to setting a configuration property inside Spring. First let's add the a property
+to our `application.properties` file. 
+
+```properties
+...
+myMessage=Hello! I am property!
+```
+
+I added a html element to the _Thymeleaf_ template that looks for a message:
+```html
+...
+    <h3 style="color: white;">My Property Message:</h3>
+    <p style="color: white;" th:text="${myMessage}"></p>
+...
+```
+
+Finally, I used the `@Value` annotation with the property injection syntax.
+```java
+public class FrontendController {
+    ...
+    @Value("${myMessage}")
+    private String myMessage;
+
+    ...
+    @GetMapping("/")
+    public String launch(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
+        ...
+            model.addAttribute("myMessage", myMessage);
+        ...
+    }
+```
+
+Now when we run the application we can see our configured property.
+
+![Screenshot of the front-end UI with the configured property.](diagrams/property_basic.png)
+
+_Hello, property! I am human! We can be friends!_
+
+We have gained a small bit of flexibility in our front-end. Now we don't need to make any code changes to change
+our message. Using Spring's configuration properties we can now pass in new values on start-up.
+
+Here is an example using the _Spring Boot Maven Plugin_:
+
+```bash
+./mvnw spring-boot:run -Dspring-boot.run.arguments=--myMessage="I was passed in at startup"
+```
+
+A good first start, but this method has a few problems. First, this method becomes unwieldy after only
+a few different configuration properties start needing to be passed in. Second, configuration changes
+are not version controlled so changes are not audible. Third, this method isn't suited for sensitive values
+as it can leak them into logs. Lastly, we still basically need to restart the app to make in configuration changes.
+
+Let's see if we can do a bit better.
+
+## Enter Consul K/V Store Dynamic Configuration Management
+We already talked about the [service discovery features of Consul](consul-presentation-outline.md), but another key
+feature the Consul provides us is a distributed Key/Value store. We can leverage this functionality to
+give us dynamic property management. 
+
+Spring Boot will pull these properties from the Consul server on start-up and can update them while running, which is
+where the term _dynamic_ comes from. In our example, we will be using a `git` repository to provide tracking and 
+audibility of our properties and a companion service called `git2consul` that makes sure that changes to the repository
+are populated to Consul.
+ 
+// TODO: Create Diagram of GIT + GIT2CONSUL + CONSUL + SERVICE
+
+
 
 ### OUTLINE
 
