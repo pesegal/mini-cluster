@@ -2,6 +2,7 @@
   "version": "1.0",
   "repos": [
     {
+      "name": "mc-config",
       "url": "/var/repo",
       "branches": [
         "master",
