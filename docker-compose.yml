@@ -31,6 +31,7 @@ services:
     depends_on:
       - consul
 
+# Dynamic Configuration Settings
   git2consul:
     image: "cimpress/git2consul"
     container_name: git2consul
@@ -38,12 +39,12 @@ services:
     entrypoint:
       - "/usr/bin/node"
       - "/usr/lib/node_modules/git2consul"
-      - "--endpoint"
-      - "consul"
-      - "--port"
-      - "8500"
       - "--config-file"
       - "/etc/git2consul.d/config.json"
+
+    environment:
+      CONSUL_ENDPOINT: 'consul'
+      CONSUL_PORT: '8500'
 
     volumes:
       - "${PWD}/configRepo/git2consul_config.json:/etc/git2consul.d/config.json"

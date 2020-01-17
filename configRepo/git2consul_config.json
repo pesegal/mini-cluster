@@ -2,10 +2,11 @@
   "version": "1.0",
   "repos": [
     {
-      "name": "test_configuration",
       "url": "/var/repo",
       "branches": [
-        "master"
+        "master",
+        "development",
+        "myCustomBranch"
       ],
       "hooks": [
         {
