@@ -1,0 +1,8 @@
+logging:
+  level:
+    mini:
+      cluster:
+        frontend:
+          service: DEBUG
+
+myMessage: Hello! I am a local property
