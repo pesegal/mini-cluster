@@ -1,26 +1,30 @@
 # Mini Cluster
 This is a learning project where I am trying to simulate a simple microservice cluster and to try out different tools and ideas. Some of the things I want to try are:
 
-__Tooling / Utility__
+__Infrastructure Tooling / Utility__
 1. Service Discovery (Consul)
 2. Configuration Managment (Consul)
-3. Secrets Management (Consul + Vault)
-4. Distributed tracing (Perf Monitoring)
+3. Dynamic Secrets Management (Consul + Vault)
+4. Service Mesh + L7 Routing (Envoy Proxy)
+5. Distributed tracing (Perf Monitoring)
+6. API Gateway Integration?
+
 
 __Message Passing Techniques__
 1. REST
-2. Circuit Breaker
-3. gRPC
-4. Message Queueing
+2. gRPC
+3. Message Queueing
 
 __Distributed Transactions__
 1. Eventual Consistency / Saga 
+2. Circuit Breaker
 
-The technologies will be focused around Spring / JVM technologies first, but I might try out other frameworks in the future.
+The technologies will be focused around Spring / JVM technologies first, but I might try out other frameworks (node.js) in the future.
 
 In addition, I will be providing write up's to provide context to each exploration. Links to writeups:
-- [Introduction Service Discovery with Consul](notes/consul-presentation-outline.md)
-- [Distributed Configuration Management with Consul](notes/consul-for-configuration-mgmt.md)
+1. [Introduction Service Discovery with Consul](notes/consul-presentation-outline.md)
+2. [Distributed Configuration Management with Consul](notes/consul-for-configuration-mgmt.md)
+3. [Dynamic Secrets Management with Vault](notes/secrets-mgmt-with-vault.md)
 
 ## Setup
 In the root directory you can build the maven projects
