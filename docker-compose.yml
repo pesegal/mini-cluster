@@ -67,6 +67,23 @@ services:
       - "8500:8500"
       - "8600:8600"
 
+  vault:
+    hostname: vault
+    image: "vault"
+    container_name: vault-dev
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "vault_dev" # Sets initial token to static for testing
+
+    volumes:
+      - "${PWD}/configRepo/vaultConfig:/vault/config"
+
+    depends_on:
+      - consul
+    networks:
+      - mc-net
+
 networks:
   mc-net:
     driver: bridge
