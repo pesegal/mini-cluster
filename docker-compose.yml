@@ -84,6 +84,21 @@ services:
     networks:
       - mc-net
 
+  db:
+    hostname: db
+    image: "postgres"
+    container_name: postgres-dev
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_PASSWORD: "password"
+
+    volumes:
+      - "${PWD}/configRepo/dbConfig:/docker-entrypoint-initdb.d/"
+
+    networks:
+      - mc-net
+
 networks:
   mc-net:
     driver: bridge
