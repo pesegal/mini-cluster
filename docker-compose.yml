@@ -61,6 +61,8 @@ services:
     image: "consul"
 
     container_name: consul-dev
+
+
     networks:
       - mc-net
     ports:

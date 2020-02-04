@@ -1,9 +1,12 @@
 {
   "plugin_name": "postgresql-database-plugin",
   "allowed_roles": "count-service",
-  "connection_url": "{{username}}:{{password}}@db:5432/count_service?sslmode=disable",
+  "connection_url": "postgresql://{{username}}:{{password}}@db:5432/count_service?sslmode=disable",
   "max_open_connections": 10,
   "max_connection_lifetime": "5s",
   "username": "postgres",
-  "password": "password"
+  "password": "password",
+  "creation_statements": [
+    "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"
+  ]
 }
