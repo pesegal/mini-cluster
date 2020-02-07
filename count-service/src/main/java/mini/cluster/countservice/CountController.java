@@ -23,13 +23,11 @@ public class CountController {
 
     @GetMapping("/count")
     public int getCurrentCount() {
-        return this.countService.getCurrentCount();
+        return this.countService.getCurrentCount().getCountVal();
     }
 
     @PutMapping("/count")
     public int setCurrentCount(@RequestParam("setCount") int setCount) {
-        return this.countService.setCurrentCount(setCount);
+        return this.countService.setCurrentCount(setCount).getCountVal();
     }
-
-
 }
