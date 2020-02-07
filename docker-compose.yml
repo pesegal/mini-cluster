@@ -62,6 +62,9 @@ services:
 
     container_name: consul-dev
 
+    volumes:
+      - "${PWD}/configRepo/consulConfig:/consul/config"
+
 
     networks:
       - mc-net
