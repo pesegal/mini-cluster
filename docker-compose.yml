@@ -3,6 +3,7 @@ services:
   front-end:
     image: "pesegal/mc-front-end:0.0.1"
     container_name: front-end
+    hostname: front-end
     networks:
       - mc-net
     ports:
@@ -19,6 +20,7 @@ services:
 
   count-service:
     image: "pesegal/mc-count-service:0.0.1"
+    hostname: count-service
     networks:
       - mc-net
     ports:
@@ -35,6 +37,7 @@ services:
   git2consul:
     image: "cimpress/git2consul"
     container_name: git2consul
+    hostname: git2consul
 
     entrypoint:
       - "/usr/bin/node"
