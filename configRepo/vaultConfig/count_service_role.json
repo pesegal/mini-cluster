@@ -1,0 +1,9 @@
+{
+  "name": "count-service",
+  "db_name": "count-service",
+  "default_ttl": "1h",
+  "max_ttl": "24h",
+  "creation_statements": [
+    "CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}'; GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"
+  ]
+}

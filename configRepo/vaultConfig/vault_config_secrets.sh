@@ -12,3 +12,9 @@ curl --header "X-Vault-Token: $VAULT_TOKEN" \
      --request POST \
      --data @postgres_engine.json \
      http://localhost:8200/v1/database/config/count-service
+
+# Execute API commands to create the count-service role.
+curl --header "X-Vault-Token: $VAULT_TOKEN" \
+     --request POST \
+     --data @count_service_role.json \
+     http://localhost:8200/v1/database/roles/count-service
