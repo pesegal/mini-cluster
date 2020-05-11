@@ -1,11 +1,3 @@
 spring:
   application:
     name: front-end
-  cloud:
-    consul:
-      host: localhost
-      port: 8500
-      config:
-        enabled: true
-        format: FILES
-        prefix: mc-config/master/front-end

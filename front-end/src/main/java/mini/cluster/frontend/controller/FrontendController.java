@@ -5,16 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.naming.ServiceUnavailableException;
+import org.springframework.web.client.RestClientException;
 
 @Controller
-@RefreshScope
 public class FrontendController {
     Logger logger = LoggerFactory.getLogger(FrontendController.class);
 
@@ -34,7 +32,7 @@ public class FrontendController {
             model.addAttribute("counter", countService.getCount());
             model.addAttribute("myMessage", myMessage);
 
-        } catch (ServiceUnavailableException e) {
+        } catch (RestClientException e) {
             logger.error(e.getMessage());
             model.addAttribute("counter", -1);
             model.addAttribute("errorMsg", e.getMessage());
@@ -51,7 +49,7 @@ public class FrontendController {
             countService.setCount(currentCount);
             // Explicitly grab the new count for testing
             newCount = countService.getCount();
-        } catch (ServiceUnavailableException e) {
+        } catch (RestClientException e) {
             logger.error(e.getMessage());
             model.addAttribute("errorMsg", e.getMessage());
             newCount = -1;

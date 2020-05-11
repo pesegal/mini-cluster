@@ -5,4 +5,7 @@ logging:
         frontend:
           service: DEBUG
 
-myMessage: Hello! I am a local property
+service:
+  count:
+    host: http://localhost
+    port: 8081

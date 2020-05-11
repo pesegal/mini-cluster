@@ -1,13 +1,19 @@
 # Mini Cluster
-This is a learning project where I am trying to simulate a simple microservice cluster and to try out different tools and ideas. Some of the things I want to try are:
+This is a learning project where I am trying to simulate a simple microservice cluster and to try out different tools and ideas.
+
+There are now two versions of this project. One based on deployment via Kubernetes, and the other using Hashicorp utilities: Consul and Vault.
+To see the Consul and Vault based implementation check out the `consul-value-example` branch. 
+
+These are the ideas I want to explore:
+
 
 __Infrastructure Tooling / Utility__
-1. Service Discovery (Consul)
-2. Configuration Managment (Consul)
-3. Dynamic Secrets Management (Consul + Vault)
-4. Service Mesh + L7 Routing (Envoy Proxy)
-5. Distributed tracing (Perf Monitoring)
-6. API Gateway Integration?
+1. Service Discovery 
+2. Configuration Management
+3. Dynamic Secrets Management
+4. Service Mesh + L7 Routing
+5. Distributed tracing
+6. API Gateway Integration
 
 
 __Message Passing Techniques__
@@ -27,11 +33,12 @@ In addition, I will be providing write up's to provide context to each explorati
 3. [Dynamic Secrets Management with Vault](notes/secrets-mgmt-with-vault.md)
 
 ## Setup
+Create a local postgres database called `count_service`. Then run an instance of count service.
+Once that is running start up and instance of front-end.
+
 In the root directory you can build the maven projects
 using `mvn clean package` which will build and create docker containers for
-each micro-service project. Once that has completed you can use `docker-compose up`
-to start up all the microservices in a mini-cluster. `docker-compose down` will stop
-the running cluster as well.
+each micro-service project.
 
 ## Image Cleanup
 The current docker container generation plugin leaves
@@ -39,10 +46,4 @@ dangling container images on your local docker. You can quickly clean them
 up with:
 ```
 docker rmi $(docker images -qa -f 'dangling=true')
-```
-
-## Scaling Container To Show Loadbalancing
-```bash
-// Scales count service to three instances.
-docker-compose up --scale count-service=3
 ```
